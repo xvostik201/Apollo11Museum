@@ -3,8 +3,8 @@ using UnityEngine;
 public abstract class BaseMuseumPanel : MonoBehaviour
 {
     [Header("Museum Info")]
-    [SerializeField] protected string _panelName;
-    [SerializeField, TextArea] protected string _historyDescription;
+    [SerializeField, TextArea(2,2)] protected string _panelName;
+    [SerializeField, TextArea(3,10)] protected string _historyDescription;
     
     [Header("Interectable Settings")]
     [SerializeField] protected Button _mainButton;
@@ -16,7 +16,7 @@ public abstract class BaseMuseumPanel : MonoBehaviour
 
     public abstract void ActivateScenario();
     
-    public abstract void OnButtonPressedLogic();
+    protected abstract void OnButtonPressedLogic();
 
     protected virtual void OnEnable()
     {
