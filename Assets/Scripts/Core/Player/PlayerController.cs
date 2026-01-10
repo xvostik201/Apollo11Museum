@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class PlayerController : MonoBehaviour
     [Header("Interaction")]
     [SerializeField] private LayerMask _interactionLayer;
     [SerializeField] private float _rayDistance = 5f;
+
+    [Header("Cursor")] 
+    [SerializeField] private Image _cursor;
+    [SerializeField] private Color _defaultCursorColor;
+    [SerializeField] private Color _interactionCursorColor;
     
     private CharacterController _characterController;
 
@@ -89,11 +95,17 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider.TryGetComponent(out Button interactionButton))
             {
+                _cursor.color = _interactionCursorColor;
                 if (Input.GetMouseButtonDown(0))
                 {
                     interactionButton.PressButton();
                 }
             }
+            
+        }
+        else
+        {
+            _cursor.color = _defaultCursorColor;
         }
     }
 }
