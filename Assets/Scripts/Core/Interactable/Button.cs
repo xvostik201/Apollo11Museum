@@ -24,11 +24,10 @@ public class Button : MonoBehaviour
         Sequence seq = DOTween.Sequence();
         float time = _animationDuration / 2;
 
-        seq.Append(transform.DOLocalMoveZ(_startlocalPos.z + _animationEndPosition.z, time));
+        seq.Append(transform.DOLocalMoveZ(_startlocalPos.z + _animationEndPosition.z, time))
+            .OnComplete(() => OnButtonPressed?.Invoke());
     
         seq.Append(transform.DOLocalMoveZ(_startlocalPos.z, time));
-    
-        seq.OnComplete(() => OnButtonPressed?.Invoke());
     }
 
     public void PressButton()
