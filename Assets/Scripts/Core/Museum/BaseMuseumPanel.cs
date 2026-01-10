@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class BaseMuseumPanel : MonoBehaviour
@@ -9,11 +10,24 @@ public abstract class BaseMuseumPanel : MonoBehaviour
     [Header("Interectable Settings")]
     [SerializeField] protected Button _mainButton;
 
+    public bool IsScenarioActive { get; protected set; }
+    
+    public string Name => _panelName;
+    public string HistoryDescription => _historyDescription;
+
+    public event Action OnScenarioComplete;
+    
     public virtual void ShowInfo()
     {
         Debug.Log($"Экспонат: {_panelName}. История: {_historyDescription}");
     }
-
+    
+    protected virtual void ResetScenario()
+    {
+        IsScenarioActive = false;
+        OnScenarioComplete?.Invoke();
+    }
+    
     public abstract void ActivateScenario();
     
     protected abstract void OnButtonPressedLogic();
