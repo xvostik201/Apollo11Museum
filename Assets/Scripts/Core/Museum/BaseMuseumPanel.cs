@@ -8,12 +8,16 @@ public abstract class BaseMuseumPanel : MonoBehaviour
     [SerializeField, TextArea(3,10)] protected string _historyDescription;
     
     [Header("Interectable Settings")]
+    [SerializeField] protected bool _interectable = false;
     [SerializeField] protected Button _mainButton;
+
 
     public bool IsScenarioActive { get; protected set; }
     
     public string Name => _panelName;
     public string HistoryDescription => _historyDescription;
+    
+    public bool Interectable => _interectable;
 
     public event Action OnScenarioComplete;
     
