@@ -28,11 +28,12 @@ public class ScenarioTrigger : MonoBehaviour
         _mainCamera = Camera.main;
         _name.text = _museumPanel.Name;
         _description.text = _museumPanel.HistoryDescription;
-
-        _completeScenarioText.alpha = 0f;
         
         ToggleUI(false);
 
+        if(_completeScenarioText != null)
+            _completeScenarioText.alpha = 0f;
+        
         enabled = false;
     }
 
@@ -52,7 +53,7 @@ public class ScenarioTrigger : MonoBehaviour
             _textParent.rotation = Quaternion.LookRotation(direction);
         }
         
-        if (_inTrigger && Input.GetKeyDown(KeyCode.E))
+        if (_inTrigger && Input.GetKeyDown(KeyCode.E) && _museumPanel.Interectable)
         {
             if (!_museumPanel.IsScenarioActive)
             {
